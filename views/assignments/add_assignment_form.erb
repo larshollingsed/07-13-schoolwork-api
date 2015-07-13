@@ -1,0 +1,29 @@
+<h2>
+  Add a New Assignment
+</h2>
+
+<form action="/add_assignment_confirm">
+  <ul>
+    <li>
+      Assignment Name - <input type="text" name="assignment[name]">
+    </li>
+    <li>
+      Description - <input type="text" name="assignment[description]">
+    </li>
+    <li>
+      Repository Link - <input type="text" name="assignment[repository]">
+    </li>
+    <li>
+      Video or Article link <input type="text" name="assignment[link]">
+    </li>
+    <li>
+      Who worked on this assignment?
+      <% @collaborators.each do |collaborator| %>
+      <li>
+        <input type="checkbox" name="assignment[collaborator_id][]" value="<%= collaborator.id %>"> <%= collaborator.collaborator_name %>
+      </li>
+      <% end %>
+    </li>
+  </ul>
+  <input type="submit">
+</form>
