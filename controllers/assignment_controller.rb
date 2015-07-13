@@ -44,3 +44,9 @@ get "/delete_assignment_confirm" do
   @deleted_assignment.delete
   erb :"home"
 end
+
+get "/see_all_assignments" do
+  @assignments = Assignment.all
+  @collaborators = Collaborator.all
+end
+
