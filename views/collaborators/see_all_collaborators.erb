@@ -1,0 +1,11 @@
+<h2>
+  See All Collaborators
+</h2>
+<ul>
+  <% binding.pry %>
+  <% @collaborators.each do |collaborator|%>
+    <li>
+      <%= collaborator.id %> - <%= collaborator.collaborator_name %>
+    </li>
+  <% end %>
+</ul>
