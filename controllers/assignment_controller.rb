@@ -13,6 +13,10 @@ get "/add_assignment_confirm" do
   erb :"home"
 end
 
-get "/see_all_assignments" do
+get "/modify_assignment_form1" do
   @assignments = Assignment.all
+  erb :"/assignments/modify_assignment_form1"
 end
+
+get "/modify_assignment_form2" do
+  @assignment = Assignment.find(params["assignment"])

@@ -1,0 +1,9 @@
+<h2>
+  Choose an Assignment to Modify
+</h2>
+<form action="/modify_assignment_form2">
+  <% @assignments.each do |assignment| %>
+    <input type="radio" value="assignment[<%= assignment.id %>]"><%= assignment.assignment_name %>
+  <% end %>
+  <input type="submit">
+</form>
