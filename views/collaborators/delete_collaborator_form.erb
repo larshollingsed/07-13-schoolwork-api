@@ -1,0 +1,13 @@
+<h2>
+  Delete a Collaborator
+</h2>
+<form action="/delete_collaborator_confirm">
+  <ul>
+    <% @collaborators.each do |collaborator|%>
+      <li>
+        <input type="radio" name="collaborator[id]" value="<%= collaborator.id %>"><%= collaborator.id %> - <%= collaborator.collaborator_name %>
+      </li>
+    <% end %>
+  </ul>
+  <input type="submit">
+</form>

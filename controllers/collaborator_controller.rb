@@ -11,3 +11,14 @@ get "/see_all_collaborators" do
   @collaborators = Collaborator.all
   erb :"/collaborators/see_all_collaborators"
 end
+
+get "/delete_collaborator_form" do
+  @collaborators = Collaborator.all
+  erb :"/collaborators/delete_collaborator_form"
+end
+
+get "/delete_collaborator_confirm" do
+  @deleted_collaborator = Collaborator.find(params["collaborator"]["id"])
+  @deleted_collaborator.delete
+  erb :"/home"
+end

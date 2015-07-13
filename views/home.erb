@@ -2,4 +2,8 @@
   <% if @new_collaborator %>
     <%= @new_collaborator.collaborator_name %> has been added to "collaborators"
   <% end %>
+  
+  <% if @deleted_collaborator %>
+    <%= @deleted_collaborator.collaborator_name %> has been deleted
+  <% end %>
 </h3>
