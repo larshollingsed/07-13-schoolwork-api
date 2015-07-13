@@ -3,7 +3,7 @@
 </h2>
 <form action="/modify_assignment_form2">
   <% @assignments.each do |assignment| %>
-    <input type="radio" value="assignment[<%= assignment.id %>]"><%= assignment.assignment_name %>
+    <input type="radio" name="assignment_id" value="<%= assignment.id %>"><%= assignment.assignment_name %>
   <% end %>
   <input type="submit">
 </form>

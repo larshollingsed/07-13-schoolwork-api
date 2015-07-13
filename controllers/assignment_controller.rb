@@ -19,4 +19,7 @@ get "/modify_assignment_form1" do
 end
 
 get "/modify_assignment_form2" do
-  @assignment = Assignment.find(params["assignment"])
+  @assignment = Assignment.find(params["assignment_id"].to_i)
+  @collaborators = @assignment.find_collaborators
+  erb :"/assignments/modify_assignment_form2"
+end

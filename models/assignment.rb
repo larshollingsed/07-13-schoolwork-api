@@ -24,7 +24,13 @@ class Assignment
   
   # Returns the collaborator ids of anyone who worked on this assignment
   def find_collaborators
-    DB.execute("SELECT collaborator_id FROM collaborations WHERE assignment_id = #{self.id};")
+    collaborators = DB.execute("SELECT collaborator_id FROM collaborations WHERE assignment_id = #{self.id};")
+    collaborator_ids = []
+    collaborators.each do |collaborator|
+      collaborator_ids << collaborator["collaborator_id"]
+    end
+    collaborator_ids
+  end
 end
 
 # SELECT assignments.assignment_name, assignments.description, assignments.link, assignments.repository, collaborators.collaborator_name FROM collaborations INNER JOIN assignments ON assignments.id = collaborations.assignment_id INNER JOIN collaborators ON collaborators.id = collaborations.collaborator_id;
