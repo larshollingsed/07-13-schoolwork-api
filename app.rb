@@ -11,3 +11,4 @@ require_relative "./models/collaborator.rb"
 
 require_relative "./controllers/assignment_controller.rb"
 require_relative "./controllers/collaborator_controller.rb"
+require_relative "./controllers/api_controller.rb"
