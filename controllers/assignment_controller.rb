@@ -33,3 +33,14 @@ get "/modify_assignment_confirm" do
   erb :"home"
 end
   
+get "/delete_assignment_form" do
+  @assignments = Assignment.all
+  erb :"/assignments/delete_assignment_form"
+end
+
+get "/delete_assignment_confirm" do
+  @deleted_assignment = Assignment.find(params["assignment_id"].to_i)
+  @deleted_assignment.delete_collaborations
+  @deleted_assignment.delete
+  erb :"home"
+end

@@ -1,0 +1,10 @@
+<h2>
+  Choose an Assignment to Delete
+</h2>
+
+<form action="/delete_assignment_confirm">
+  <% @assignments.each do |assignment| %>
+    <input type="radio" name="assignment_id" value="<%= assignment.id %>"><%= assignment.assignment_name %>
+  <% end %>
+  <input type="submit">
+</form>

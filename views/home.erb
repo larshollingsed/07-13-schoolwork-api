@@ -6,8 +6,23 @@
   <% if @deleted_collaborator %>
     <%= @deleted_collaborator.collaborator_name %> has been deleted
   <% end %>
+  
+  <% if @deleted_assignment %>
+    <%= @deleted_assignment.assignment_name %> has been deleted
+  <% end %>
+  
+  <% if @modified_assignment %>
+    <%= @modified_assignment.assignment_name %> has been modified
+  <% end %>  
+  
 </h3>
 
 <h1>
   Larz's Schoolwork API
 </h1>
+
+<a href="/add_assignment_form">Add Assignment </a>
+<a href="/delete_assignment_form">Delete Assignment </a>
+<a href="/modify_assignment_form1">Modify Assignment </a>
+<a href="/add_collaborator_form">Add Collaborator </a>
+<a href="/delete_collaborator_form">Delete Collaborator</a>
