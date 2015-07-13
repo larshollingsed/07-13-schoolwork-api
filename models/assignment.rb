@@ -15,5 +15,10 @@ class Assignment
     @link = args["link"]
   end
   
-  
+  # users - Array of collaborator_ids 
+  def add_to_collaborations(users)
+    users.each do |collaborator_id|
+      DB.execute("INSERT INTO collaborations (assignment_id, collaborator_id) VALUES (#{self.id}, #{collaborator_id});")
+    end
+  end
 end

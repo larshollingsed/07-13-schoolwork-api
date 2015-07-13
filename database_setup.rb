@@ -4,6 +4,6 @@ DB.execute("CREATE TABLE IF NOT EXISTS assignments (id INTEGER PRIMARY KEY, assi
 
 DB.execute("CREATE TABLE IF NOT EXISTS collaborators (id INTEGER PRIMARY KEY, collaborator_name TEXT);")
 
-DB.execute("CREATE TABLE IF NOT EXISTS collaborations (assignment_id INTEGER, collaborator_name INTEGER);")
+DB.execute("CREATE TABLE IF NOT EXISTS collaborations (assignment_id INTEGER, collaborator_id INTEGER);")
 
 DB.results_as_hash = true
