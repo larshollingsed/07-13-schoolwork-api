@@ -3,5 +3,5 @@ get "/add_collaborator_form" do
 end
 
 get "/add_collaborator_confirm" do
-  @new_collaborator = Collaborator.add("id" => params["collaborator"]["id"].to_i), "collaborator_name" => params["collaborator"]["name"])
+  @new_collaborator = Collaborator.add({"collaborator_name" => params["collaborator"]["name"]})
 end
