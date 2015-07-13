@@ -20,6 +20,16 @@ end
 
 get "/modify_assignment_form2" do
   @assignment = Assignment.find(params["assignment_id"].to_i)
-  @collaborators = @assignment.find_collaborators
+  @collaborators_worked = @assignment.find_collaborators
+  @collaborators = Collaborator.all
   erb :"/assignments/modify_assignment_form2"
 end
+
+get "/modify_assignment_confirm" do 
+  @modified_assignment = Assignment.new({"id" => params["assignment"]["id"], "assignment_name" => params["assignment"]["name"], "link" => params["assignment"]["link"], "repository" => params["assignment"]["repository"], "description" => params["assignment"]["description"]})
+  @modified_assignment.save
+  @modified_assignment.delete_collaborations
+  @modified_assignment.add_to_collaborations(params["assignment"]["collaborator_id"])
+  erb :"home"
+end
+  

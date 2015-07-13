@@ -1,2 +1,30 @@
-<%= @assignment.assignment_name %>
-<%= @collaborators %>
+<h2>
+  Modify this Assignment
+</h2>
+
+<form action="/modify_assignment_confirm">
+  <input type="hidden" name="assignment[id]" value="<%= @assignment.id %>">
+  <ul>
+    <li>
+      Assignment Name - <input type="text" name="assignment[name]" value="<%= @assignment.assignment_name %>">
+    </li>
+    <li>
+      Description - <input type="text" name="assignment[description]" value="<%= @assignment.description %>">
+    </li>
+    <li>
+      Repository Link - <input type="text" name="assignment[repository]" value="<%= @assignment.repository %>">
+    </li>
+    <li>
+      Video or Article link <input type="text" name="assignment[link]" value="<%= @assignment.link %>">
+    </li>
+    <li>
+      Who worked on this assignment?
+      <% @collaborators.each do |collaborator| %>
+      <li>
+        <input type="checkbox" name="assignment[collaborator_id][]" value="<%= collaborator.id %>" <% if @collaborators_worked.include?(collaborator.id) %> checked <% end %>> <%= collaborator.collaborator_name %>
+      </li>
+      <% end %>
+    </li>
+  </ul>
+  <input type="submit">
+</form>

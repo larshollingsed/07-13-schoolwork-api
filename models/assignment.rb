@@ -31,6 +31,10 @@ class Assignment
     end
     collaborator_ids
   end
+  
+  def delete_collaborations
+    DB.execute("DELETE FROM collaborations WHERE assignment_id = #{self.id};")
+  end
 end
 
 # SELECT assignments.assignment_name, assignments.description, assignments.link, assignments.repository, collaborators.collaborator_name FROM collaborations INNER JOIN assignments ON assignments.id = collaborations.assignment_id INNER JOIN collaborators ON collaborators.id = collaborations.collaborator_id;
