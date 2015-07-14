@@ -27,3 +27,14 @@ get "/api/collaborators" do
   end
   json json_array
 end
+
+get "/api/collaborators/:id" do
+  collaborator = Collaborator.find(params["id"])
+  assignment_ids = collaborator.get_assignments
+  json_array = []
+  assignment_ids.each do |assignment_id|
+    assignment = Assignment.find(assignment_id)
+    json_array << assignment.json_format
+  end
+  json json_array
+end

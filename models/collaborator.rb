@@ -18,4 +18,13 @@ class Collaborator
     hash["collaborator_name"] = self.collaborator_name
     hash
   end
+  
+  def get_assignments
+    assignments = DB.execute("SELECT * FROM collaborations WHERE collaborator_id = #{self.id}")
+    assignment_ids = []
+    assignments.each do |assignment|
+      assignment_ids << assignment["assignment_id"].to_i
+    end
+    assignment_ids
+  end
 end
