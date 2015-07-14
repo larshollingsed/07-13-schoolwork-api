@@ -49,13 +49,15 @@ get "/api/collaborators/:id" do
   json json_array
 end
 
-# not working
-# get "/api/assignments/new/:name/:github" do
-#   assignment = Assignment.add({"assignment_name" => params["name"], "repository" => params["github"]})
-#   json_array = []
-#   json_array << assignment.json_format
-#   json json_array
-# end
+# adds a new assignment
+# :name is the name of the assignment
+# append ?github= followed by the url of the github repository
+get "/api/assignments/new/:name" do
+  assignment = Assignment.add({"assignment_name" => params["name"], "repository" => params["github"]})
+  json_array = []
+  json_array << assignment.json_format
+  json json_array
+end
 
 # delete an assignment
 # :id is the assignment's id - INTEGER
