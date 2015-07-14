@@ -58,17 +58,3 @@ function showAssignment(event) {
   req.send();
 }
 
-// function makeAssignmentButtons(event) {
-//   event.preventDefault();
-//
-//   var req = new XMLHttpRequest()
-//   req.open("get", "/api/assignments")
-//   req.addEventListener("load", function() {
-//     for(var i = 0; i < this.response.length; i++) {
-//       linkName = "ass"
-//       document.getElementById()
-//     }
-//   })
-//
-// }
-
