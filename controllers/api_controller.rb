@@ -20,7 +20,7 @@ get "/api/assignments/:id" do
   collaborator_array.each do |collaborator_id|
     collaborator_names << Collaborator.find(collaborator_id).collaborator_name
   end
-  json_array["collaborators"] = collaborator_names
+  json_array["collaborators"] = assignment.find_collaborators
   json json_array  
 end
 
@@ -114,4 +114,9 @@ get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
   else
     return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has not been added as a collaborator on #{assignment.assignment_name}."
   end
+end
+
+get "/api/views/modify_assignment" do
+  @collaborators = Collaborator.all
+  erb :"/api/modify_assignment"
 end
