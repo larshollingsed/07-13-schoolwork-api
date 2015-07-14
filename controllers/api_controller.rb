@@ -98,7 +98,7 @@ end
 get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
   assignment = Assignment.find(params["assignment_id"].to_i)
   if assignment.has_collaborator?(params["collaborator_id"].to_i)
-    assignment.delete_collaborator(params["collaborator_id"].to_i)
+    assignment.remove_collaborator(params["collaborator_id"].to_i)
     json assignment.json_format
   else
     return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has not been added as a collaborator on #{assignment.assignment_name}."
