@@ -36,6 +36,10 @@ class Assignment
     DB.execute("DELETE FROM collaborations WHERE assignment_id = #{self.id};")
   end
   
+  def delete_collaborator(collaborator_id)
+    DB.execute("DELETE FROM collaborations WHERE assignment_id = #{self.id} AND collaborator_id = #{collaborator_id}")
+  end
+  
   def json_format
     hash = {}
     hash["id"] = self.id

@@ -54,7 +54,7 @@ end
 # end
 
 # delete an assignment
-# :id is the assignment's id
+# :id is the assignment's id - INTEGER
 get "/api/assignments/delete/:id" do
   assignment = Assignment.find(params["id"].to_i)
   assignment.delete
@@ -70,7 +70,7 @@ get "/api/collaborators/add/:name" do
 end
 
 # delete a collaborator
-# :id is the collaborator's id
+# :id is the collaborator's id - INTEGER
 get "/api/collaborators/delete/:id" do
   collaborator = Collaborator.find(params["id"].to_i)
   collaborator.delete
@@ -78,8 +78,9 @@ get "/api/collaborators/delete/:id" do
 end
 
 # add collaborator to existing assignment
-# :assignment_id is the assignment's id
-# :collaborator_id is the collaborator's id
+# :assignment_id is the assignment's id - INTEGER
+# :collaborator_id is the collaborator's id - INTEGER
+# Returns the assignment(JSON format) if successful or a message if unsuccessful
 get "/api/assignments/add_collaborator/:assignment_id/:collaborator_id" do
   assignment = Assignment.find(params["assignment_id"].to_i)
   if !assignment.has_collaborator?(params["collaborator_id"].to_i)
@@ -87,5 +88,19 @@ get "/api/assignments/add_collaborator/:assignment_id/:collaborator_id" do
     json assignment.json_format
   else
     return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has already been added as a collaborator on #{assignment.assignment_name}."
+  end
+end
+
+# remove a collaborator from an existing assignment
+# :assignment_id is the assignment's id - INTEGER
+# :collaborator_id is the collaborator's id - INTEGER
+# Returns the assignment(JSON format) if successful or a message if unsuccessful
+get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
+  assignment = Assignment.find(params["assignment_id"].to_i)
+  if assignment.has_collaborator?(params["collaborator_id"].to_i)
+    assignment.delete_collaborator(params["collaborator_id"].to_i)
+    json assignment.json_format
+  else
+    return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has not been added as a collaborator on #{assignment.assignment_name}."
   end
 end
