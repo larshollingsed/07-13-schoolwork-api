@@ -2,36 +2,24 @@
 
 ## Basic API Documentation
 
-#### see all assignments
-returns all assignments in JSON forman
-"/api/assignments"
 
-#### see all assignments a collaborator worked on
-#### :id is the collaborator's id
-get "/api/assignments/:id" do
-  assignment = Assignment.find(params["id"])
-  collaborator_array = assignment.find_collaborators
-  json_array = assignment.json_format
-  collaborator_names = []
-  collaborator_array.each do |collaborator_id|
-    collaborator_names << Collaborator.find(collaborator_id).collaborator_name
-  end
-  json_array["collaborators"] = collaborator_names
-  json json_array  
-end
+### see all assignments
+####/api/assignments
+##### returns all of the assignments(including their attributes) in JSON format
 
-# see all collaborators
-get "/api/collaborators" do
-  collaborators = Collaborator.all
-  json_array = []
-  collaborators.each do |collaborator|
-    json_array << collaborator.json_format
-  end
-  json json_array
-end
+### see all assignments a collaborator worked on
+####/api/assignments/:id
+##### :id is the collaborator's id
+##### returns all assignments(including their attributes) that the collaborator worked on in JSON format
+
+
+#### see all collaborators
+#### returns all collaborators(and their attributes) in JSON format
+#####/api/collaborators
 
 # get all assignments a collaborator has worked on
 # :id is the collaborator's id
+# returns all of the assignments(and their attributes) the given collaborator has worked on in JSON format
 get "/api/collaborators/:id" do
   collaborator = Collaborator.find(params["id"])
   assignment_ids = collaborator.get_assignments
@@ -53,6 +41,8 @@ end
 
 # delete an assignment
 # :id is the assignment's id - INTEGER
+# deletes an assignment from the assignments table and all rows from the collaborations tables associated with that assignment
+# returns the assignment that was deleted in JSON format
 get "/api/assignments/delete/:id" do
   assignment = Assignment.find(params["id"].to_i)
   assignment.delete
@@ -62,6 +52,7 @@ end
 
 # add a collaborator
 # :name is the collaborator's name
+# returns the new collaborator in JSON format
 get "/api/collaborators/add/:name" do
   collaborator = Collaborator.add({"collaborator_name" => params["name"]})
   json collaborator.json_format
@@ -69,6 +60,7 @@ end
 
 # delete a collaborator
 # :id is the collaborator's id - INTEGER
+# returns the deleted collaborator in JSON format
 get "/api/collaborators/delete/:id" do
   collaborator = Collaborator.find(params["id"].to_i)
   collaborator.delete
