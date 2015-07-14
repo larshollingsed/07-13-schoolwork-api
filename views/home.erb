@@ -1,28 +1,33 @@
-<h3>
-  <% if @new_collaborator %>
+<% if @new_collaborator %>
+  <h3>
     <%= @new_collaborator.collaborator_name %> has been added to "collaborators"
-  <% end %>
-  
-  <% if @deleted_collaborator %>
+  </h3>
+<% end %>
+
+<% if @deleted_collaborator %>
+  <h3>
     <%= @deleted_collaborator.collaborator_name %> has been deleted
-  <% end %>
-  
-  <% if @deleted_assignment %>
+  </h3>
+<% end %>
+
+<% if @deleted_assignment %>
+  <h3>
     <%= @deleted_assignment.assignment_name %> has been deleted
-  <% end %>
-  
-  <% if @modified_assignment %>
+  </h3>
+<% end %>
+
+<% if @modified_assignment %>
+  <h3>
     <%= @modified_assignment.assignment_name %> has been modified
-  <% end %>  
-  
-</h3>
+  </h3>
+<% end %>  
 
 <h1>
   Larz's Schoolwork API
 </h1>
 
 <div id="main">
-  <div id="assignments">
+  <ul id="assignments">
   </div>
 </div>
 
