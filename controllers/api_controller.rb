@@ -18,3 +18,12 @@ get "/api/assignments/:id" do
   json_array["collaborators"] = collaborator_names
   json json_array  
 end
+
+get "/api/collaborators" do
+  collaborators = Collaborator.all
+  json_array = []
+  collaborators.each do |collaborator|
+    json_array << collaborator.json_format
+  end
+  json json_array
+end

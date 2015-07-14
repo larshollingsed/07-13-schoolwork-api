@@ -12,4 +12,10 @@ class Collaborator
     @collaborator_name = args["collaborator_name"]
   end
   
+  def json_format
+    hash = {}
+    hash["id"] = self.id
+    hash["collaborator_name"] = self.collaborator_name
+    hash
+  end
 end
