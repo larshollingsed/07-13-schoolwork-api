@@ -21,6 +21,7 @@ function seeAllAssignments(event) {
   req.responseType = "json";
   req.send();
 }
+
 document.getElementById("see_all_assignments").onclick = seeAllAssignments;
 
 function seeAllCollaborators(event) {
@@ -29,3 +30,5 @@ function seeAllCollaborators(event) {
   var req = new XMLHttpRequest()
   
 }
+
+document.getElementById("see_all_collaborators").onclick = seeAllCollaborators;

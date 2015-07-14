@@ -49,3 +49,9 @@ Returns the assignment(JSON format) if successful or a message if unsuccessful
 ##### :assignment_id is the assignment's id - INTEGER
 ##### :collaborator_id is the collaborator's id - INTEGER
 Returns the assignment(JSON format) if successful or a message if unsuccessful
+
+### adds a new assignment
+####/api/assignments/new/:name
+##### :name is the name of the assignment
+##### append ?github= followed by the url of the github repository
+Returns the new assignment(JSON format)
