@@ -38,3 +38,17 @@ get "/api/collaborators/:id" do
   end
   json json_array
 end
+
+# not working
+get "/api/assignments/new/:name/:github" do
+  assignment = Assignment.add({"assignment_name" => params["name"], "repository" => params["github"]})
+  json_array = []
+  json_array << assignment.json_format
+  json json_array
+end
+
+get "/api/assignments/delete/:id" do
+  assignment = Assignment.find(params["id"].to_i)
+  assignment.delete
+  assignment.delete_collaborations
+end
