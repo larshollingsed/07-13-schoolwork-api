@@ -7,12 +7,15 @@ function seeAllAssignments(event) {
   req.addEventListener("load", function(){
     document.getElementById("assignments").innerText = "";
     for(var i = 0; i < this.response.length; i++) {
-      var newDivId = "assignment" + this.response[i].id;
+      var assignment = this.response[i]
+      var newDivId = "assignment" + assignment.id;
       var newDiv = document.createElement("li");
       newDiv.id = newDivId
-      newDiv.innerText = this.response[i].assignment_name;
+      newDiv.dataId = assignment.id
+      newDiv.innerText = assignment.assignment_name;
       var currentDiv = document.getElementById("assignments");
       currentDiv.appendChild(newDiv);
+      document.getElementById(newDivId).onclick = showAssignment;
       
       
       // document.body.insertBefore(newDiv, currentDiv.lastChild);
@@ -24,11 +27,48 @@ function seeAllAssignments(event) {
 
 document.getElementById("see_all_assignments").onclick = seeAllAssignments;
 
-function seeAllCollaborators(event) {
+function showAssignment(event) {
   event.preventDefault();
+  var req = new XMLHttpRequest();
+  var route = "/api/assignments/" + this.dataId;
+  req.open("get", route);
   
-  var req = new XMLHttpRequest()
-  
+  req.addEventListener("load", function(){
+    var assignment = this.response
+    document.getElementById("assignments").innerText = "";
+    
+    var newDiv = document.createElement("li");
+    newDiv.innerText = "Assignment Name - " + assignment.assignment_name;
+    var currentDiv = document.getElementById("assignments");
+    currentDiv.appendChild(newDiv);
+    
+    var newDiv = document.createElement("li");
+    newDiv.innerText = "Assignment Description - " + assignment.description;
+    var currentDiv = document.getElementById("assignments");
+    currentDiv.appendChild(newDiv);
+    
+    var newDiv = document.createElement("a");
+    newDiv.innerText = "Assignment Repository - " + assignment.repository;
+    newDiv.href = assignment.repository
+    var currentDiv = document.getElementById("assignments");
+    currentDiv.appendChild(newDiv);
+    
+  })
+  req.responseType = "json";
+  req.send();
 }
 
-document.getElementById("see_all_collaborators").onclick = seeAllCollaborators;
+// function makeAssignmentButtons(event) {
+//   event.preventDefault();
+//
+//   var req = new XMLHttpRequest()
+//   req.open("get", "/api/assignments")
+//   req.addEventListener("load", function() {
+//     for(var i = 0; i < this.response.length; i++) {
+//       linkName = "ass"
+//       document.getElementById()
+//     }
+//   })
+//
+// }
+

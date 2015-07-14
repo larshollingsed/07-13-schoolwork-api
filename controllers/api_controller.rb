@@ -53,6 +53,7 @@ end
 # :name is the name of the assignment
 # append ?github= followed by the url of the github repository
 get "/api/assignments/new/:name" do
+  binding.pry
   assignment = Assignment.add({"assignment_name" => params["name"], "repository" => params["github"]})
   json_array = []
   json_array << assignment.json_format
