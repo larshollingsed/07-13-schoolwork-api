@@ -12,7 +12,6 @@ returns all of the assignments(including their attributes) in JSON format
 #####:id is the collaborator's id - INTEGER
 returns all assignments(including their attributes) that the collaborator worked on in JSON format
 
-
 ### see all collaborators
 ####/api/collaborators
 returns all collaborators(and their attributes) in JSON format
