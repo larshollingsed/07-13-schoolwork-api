@@ -90,6 +90,8 @@ if (document.body.attributes.data_page_name.value === "modify assignment") {
   }
   seeAllAssignments();
   
+  
+  
   function showAssignmentForm() {
     var req = new XMLHttpRequest();
     route = "/api/assignments/" + this.dataId
@@ -101,6 +103,7 @@ if (document.body.attributes.data_page_name.value === "modify assignment") {
       document.getElementById("description_field").value = this.response.description;
       document.getElementById("repository_field").value = this.response.repository;
       document.getElementById("link_field").value = this.response.link;
+      document.getElementById("assignment_id_field").value = this.response.id;
       
       checkboxes = document.getElementsByClassName("collaborator_checkbox");
       for (var x = 0; x < checkboxes.length; x++) {
@@ -115,7 +118,16 @@ if (document.body.attributes.data_page_name.value === "modify assignment") {
     req.responseType = "json";
     req.send();
   }
-
+  document.getElementById("submitter").addEventListener("click", modifyAssignment);
+  
+  function modifyAssignment(event) {
+    event.preventDefault();
+    // event.stopPropagation();
+    var formElement = document.getElementById("form");
+    var request = new XMLHttpRequest();
+    request.open("POST", "/api/modify_assignment_confirm");
+    request.send(new FormData(formElement));
+  }
   
   
   

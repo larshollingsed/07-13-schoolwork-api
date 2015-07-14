@@ -4,8 +4,8 @@
   </ul>
   
   <div id="modify_form">
-    <form action="/modify_assignment_confirm">
-      <input type="hidden" name="assignment[id]">
+    <form id="form" action="/api/modify_assignment_confirm">
+      <input type="hidden" id="assignment_id_field" name="assignment[id]">
       <ul>
         <li>
           Assignment Name - <input id="name_field" type="text" name="assignment[name]">
@@ -28,6 +28,6 @@
           <% end %>
         </li>
       </ul>
-      <input type="submit">
+      <input type="button" id="submitter" value="Save these Changes">
     </form>
   </div>

@@ -116,6 +116,14 @@ get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
   end
 end
 
+post "/api/modify_assignment_confirm" do 
+  modified_assignment = Assignment.new({"id" => params["assignment"]["id"], "assignment_name" => params["assignment"]["name"], "link" => params["assignment"]["link"], "repository" => params["assignment"]["repository"], "description" => params["assignment"]["description"]})
+  modified_assignment.save
+  modified_assignment.delete_collaborations
+  modified_assignment.add_to_collaborations(params["assignment"]["collaborator_id"])
+  json modified_assignment.json_format
+end
+
 get "/api/views/modify_assignment" do
   @collaborators = Collaborator.all
   erb :"/api/modify_assignment"
