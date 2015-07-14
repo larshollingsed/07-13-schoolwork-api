@@ -2,6 +2,11 @@ require "sinatra"
 require "sinatra/reloader"
 require "sinatra/json"
 require "pry"
+require 'sinatra/cross_origin'
+
+configure do
+  enable :cross_origin
+end
 
 require "sqlite3"
 require_relative "database_setup.rb"
