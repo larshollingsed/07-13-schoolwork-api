@@ -76,3 +76,16 @@ get "/api/collaborators/delete/:id" do
   collaborator.delete
   json collaborator.json_format
 end
+
+# add collaborator to existing assignment
+# :assignment_id is the assignment's id
+# :collaborator_id is the collaborator's id
+get "/api/assignments/add_collaborator/:assignment_id/:collaborator_id" do
+  assignment = Assignment.find(params["assignment_id"].to_i)
+  if !assignment.has_collaborator?(params["collaborator_id"].to_i)
+    assignment.add_to_collaborations([params["collaborator_id"].to_i])
+    json assignment.json_format
+  else
+    return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has already been added as a collaborator on #{assignment.assignment_name}."
+  end
+end

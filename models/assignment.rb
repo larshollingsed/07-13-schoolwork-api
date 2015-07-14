@@ -46,6 +46,17 @@ class Assignment
     hash
   end
   
+  # checks to see if a collaborator is assigned to this assignment already
+  # collaborator_id is the id of the collaborator
+  # Returns True/False
+  def has_collaborator?(collaborator_id)
+    if DB.execute("SELECT * FROM collaborations WHERE collaborator_id = #{collaborator_id} and assignment_id = #{self.id};") == []
+      false
+    else
+      true
+    end
+  end
+  
 end
 
 # SELECT assignments.assignment_name, assignments.description, assignments.link, assignments.repository, collaborators.collaborator_name FROM collaborations INNER JOIN assignments ON assignments.id = collaborations.assignment_id INNER JOIN collaborators ON collaborators.id = collaborations.collaborator_id;
