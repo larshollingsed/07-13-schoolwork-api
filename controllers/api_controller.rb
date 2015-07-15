@@ -9,8 +9,8 @@ get "/api/assignments" do
   json json_array
 end
 
-# see all assignments a collaborator worked on
-# :id is the collaborator's id
+# see all collaborators who worked on an assignment
+# :id is the assignments's id
 # returns all assignments(including their attributes) that the collaborator worked on in JSON format
 get "/api/assignments/:id" do
   assignment = Assignment.find(params["id"])
@@ -125,6 +125,9 @@ post "/api/modify_assignment_confirm" do
 end
 
 get "/api/views/modify_assignment" do
-  @collaborators = Collaborator.all
   erb :"/api/modify_assignment"
+end
+
+get "/api/views/see_collaborators" do
+  erb :"/api/see_collaborations"
 end
