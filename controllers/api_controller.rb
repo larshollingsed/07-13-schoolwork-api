@@ -137,8 +137,27 @@ post "/api/add_user" do
   json new_user.json_format
 end
 
+post "/api/login" do
+  users = User.all
+  login_id = false
+  users.each do |user|
+    if user.email == params["user"]["email"] && user.password == params["user"]["password"]
+      login_id = user.id
+    end
+  end
+  if login_id == false
+    "Invalid login"
+  else
+    json User.find(login_id).json_format
+  end
+end
+
 get "/api/views/add_user_form" do
   erb :"/api/add_user_form"
+end
+
+get "/api/views/login" do
+  erb :"/api/login"
 end
 
 get "/api/views/modify_assignment" do
