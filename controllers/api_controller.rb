@@ -1,5 +1,18 @@
 set :sessions => true
 
+before do
+  if session["user_id"] == nil
+    erb :"/api/login"
+  else
+    @user = User.find(session["user_id"])
+  end
+end
+
+get "/logout" do
+  session["user_id"] = nil
+  erb :"/home"
+end
+
 # see all assignments
 # returns all of the assignments(including their attributes) in JSON format
 get "/api/assignments" do

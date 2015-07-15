@@ -9,11 +9,17 @@
   </script>
 </head>
 <body>
+  <% if @user %>
+    <h4> you are logged in as <%= @user.email %>
+  <% end %>
 
 
   <%= yield %>
 
   <footer>
+    <a href="/api/views/login">Log in </a><br>
+    <a href="/logout">Logout </a>
+    
     <p>This is the footer nav leading to different views - not API/AJAX stuff</p>
     <a href="/add_assignment_form">Add Assignment </a><br>
     <a href="/delete_assignment_form">Delete Assignment </a><br>
