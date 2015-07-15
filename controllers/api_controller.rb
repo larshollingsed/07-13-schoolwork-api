@@ -129,5 +129,6 @@ get "/api/views/modify_assignment" do
 end
 
 get "/api/views/see_collaborators" do
+  binding.pry
   erb :"/api/see_collaborations"
 end
