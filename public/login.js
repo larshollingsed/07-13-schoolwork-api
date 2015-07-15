@@ -17,7 +17,11 @@ function login(event) {
   request.send(new FormData(formElement));
   
   request.addEventListener("load", function() {
-    var confirm = this.response.email + " has been logged in!";
+    if (this.response === null) {
+      var confirm = "Login unsuccessful"
+    } else {
+      var confirm = this.response.email + " has been logged in!";
+    }
     $("#confirm")[0].innerText = confirm;
   })
 }

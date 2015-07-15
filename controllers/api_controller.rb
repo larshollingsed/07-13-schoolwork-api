@@ -145,9 +145,7 @@ post "/api/login" do
       login_id = user.id
     end
   end
-  if login_id == false
-    "Invalid login"
-  else
+  if login_id != false
     json User.find(login_id).json_format
   end
 end
