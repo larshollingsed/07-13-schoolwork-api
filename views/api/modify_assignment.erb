@@ -6,7 +6,7 @@
   <div id="modify_form">
     <form id="form" action="/api/modify_assignment_confirm">
       <input type="hidden" id="assignment_id_field" name="assignment[id]">
-      <ul>
+      <ul id="form_list">
         <li>
           Assignment Name - <input id="name_field" type="text" name="assignment[name]">
         </li>
@@ -17,17 +17,22 @@
           Repository Link - <input id="repository_field" type="text" name="assignment[repository]">
         </li>
         <li>
-          Video or Article link <input id="link_field" type="text" name="assignment[link]">
+          Video or Article link - <input id="link_field" type="text" name="assignment[link]">
         </li>
         <li>
           Who worked on this assignment?
-          <% @collaborators.each do |collaborator| %>
-          <li>
-            <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= collaborator.id %>" name="assignment[collaborator_id][]" value="<%= collaborator.id %>"> <%= collaborator.collaborator_name %>
-          </li>
-          <% end %>
         </li>
+
       </ul>
       <input type="button" id="submitter" value="Save these Changes">
     </form>
   </div>
+  
+  <!-- <li>
+    Who worked on this assignment?
+    <% @collaborators.each do |collaborator| %>
+    <li>
+      <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= collaborator.id %>" name="assignment[collaborator_id][]" value="<%= collaborator.id %>"> <%= collaborator.collaborator_name %>
+    </li>
+    <% end %>
+  </li> -->

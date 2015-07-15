@@ -90,6 +90,27 @@ if (document.body.attributes.data_page_name.value === "modify assignment") {
   }
   seeAllAssignments();
   
+  function showCollaborators() {
+    var req = new XMLHttpRequest();
+    req.open("get", "/api/collaborators");
+    
+    req.addEventListener("load", function(){
+      for (var x = 0; x < this.response.length; x++) {
+        var collaborator = this.response[x];
+        var inner_html = '<input type="checkbox" class="collaborator_checkbox" id="collaborator' + collaborator.id + '" name="assignment[collaborator_id][]" value="' + collaborator.id + '"> ' + collaborator.collaborator_name
+        
+        var newDiv = document.createElement("li");
+        newDiv.innerHTML = inner_html;
+        
+        var currentDiv = document.getElementById("form_list");
+        currentDiv.appendChild(newDiv);
+      }
+    })
+    req.responseType = "json";
+    req.send();
+  }
+  showCollaborators();
+  
   
   
   function showAssignmentForm() {
