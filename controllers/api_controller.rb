@@ -162,7 +162,11 @@ get "/api/views/login" do
 end
 
 get "/api/views/modify_assignment" do
-  erb :"/api/modify_assignment"
+  if session["user_id"] == 1
+    erb :"/api/modify_assignment"
+  else
+    "You are not allowed to access this page"
+  end
 end
 
 get "/api/views/see_collaborators" do
