@@ -41,3 +41,8 @@ ul#collaborations_list p.assignment_key.assignment_name {
   padding-top: 7px;
   font-size: 28px;
 }
+
+#previous_nav {
+  font-size: 10px;
+  color: grey;
+}
