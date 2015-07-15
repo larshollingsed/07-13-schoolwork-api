@@ -1,4 +1,7 @@
 <body data_page_name="modify assignment">
+  <h3>
+    Choose an assignment to modify and save changes below
+  </h3>
   
   <ul id="assignments">
   </ul>
@@ -27,12 +30,4 @@
       <input type="button" id="submitter" value="Save these Changes">
     </form>
   </div>
-  
-  <!-- <li>
-    Who worked on this assignment?
-    <% @collaborators.each do |collaborator| %>
-    <li>
-      <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= collaborator.id %>" name="assignment[collaborator_id][]" value="<%= collaborator.id %>"> <%= collaborator.collaborator_name %>
-    </li>
-    <% end %>
-  </li> -->
+<script src="/modify_assignment.js" type="text/javascript"> </script>

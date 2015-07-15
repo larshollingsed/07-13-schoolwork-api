@@ -149,11 +149,6 @@ if (document.body.attributes.data_page_name.value === "modify assignment") {
     request.open("POST", "/api/modify_assignment_confirm");
     request.send(new FormData(formElement));
   }
-  
-  
-  
-  
-  
-  
+   
 }
 
