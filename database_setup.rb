@@ -6,4 +6,6 @@ DB.execute("CREATE TABLE IF NOT EXISTS collaborators (id INTEGER PRIMARY KEY, co
 
 DB.execute("CREATE TABLE IF NOT EXISTS collaborations (assignment_id INTEGER, collaborator_id INTEGER);")
 
+DB.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT);")
+
 DB.results_as_hash = true
