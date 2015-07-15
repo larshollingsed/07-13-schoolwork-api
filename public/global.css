@@ -14,3 +14,30 @@ ul#form_list li {
 ul#assignments li {
   cursor: pointer;
 }
+
+h4#your_collaborator {
+  margin: 0;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 28px;
+}
+
+ul#collaborations_list {
+  margin: 0;
+}
+
+ul#collaborations_list p {
+  margin: 0;
+}
+
+ul#collaborations_list p.assignment_key {
+  color: lightseagreen;
+  padding-top: 7px;
+  font-size: 18px;
+}
+
+ul#collaborations_list p.assignment_key.assignment_name {
+  color: red;
+  padding-top: 7px;
+  font-size: 28px;
+}
