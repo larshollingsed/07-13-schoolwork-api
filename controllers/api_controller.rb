@@ -53,7 +53,6 @@ end
 # :name is the name of the assignment
 # append ?github= followed by the url of the github repository
 get "/api/assignments/new/:name" do
-  binding.pry
   assignment = Assignment.add({"assignment_name" => params["name"], "repository" => params["github"]})
   json_array = []
   json_array << assignment.json_format
@@ -138,7 +137,7 @@ post "/api/add_user" do
   json new_user.json_format
 end
 
-get "/api/add_user_form" do
+get "/api/views/add_user_form" do
   erb :"/api/add_user_form"
 end
 
@@ -147,6 +146,5 @@ get "/api/views/modify_assignment" do
 end
 
 get "/api/views/see_collaborators" do
-  binding.pry
   erb :"/api/see_collaborations"
 end
