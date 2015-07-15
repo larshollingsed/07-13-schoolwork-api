@@ -1,3 +1,5 @@
+set :sessions => true
+
 # see all assignments
 # returns all of the assignments(including their attributes) in JSON format
 get "/api/assignments" do
@@ -146,6 +148,7 @@ post "/api/login" do
     end
   end
   if login_id != false
+    session["user_id"] = login_id
     json User.find(login_id).json_format
   end
 end
