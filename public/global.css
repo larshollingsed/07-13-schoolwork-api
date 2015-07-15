@@ -2,3 +2,15 @@
   visibility: hidden;
   position: absolute;
 }
+
+ul#form_list {
+  list-style-type: none;
+}
+
+ul#form_list li {
+  padding-top: 10px;
+}
+
+ul#assignments li {
+  cursor: pointer;
+}
