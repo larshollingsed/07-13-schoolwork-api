@@ -124,6 +124,24 @@ post "/api/modify_assignment_confirm" do
   json modified_assignment.json_format
 end
 
+get "/api/see_users" do
+  users = User.all
+  user_array = []
+  users.each do |user|
+    user_array << user.json_format
+  end
+  json user_array
+end
+
+post "/api/add_user" do
+  new_user = User.add({"email" => params["new_user"]["email"], "password" => params["new_user"]["password"]})
+  json new_user.json_format
+end
+
+get "/api/add_user_form" do
+  erb :"/api/add_user_form"
+end
+
 get "/api/views/modify_assignment" do
   erb :"/api/modify_assignment"
 end

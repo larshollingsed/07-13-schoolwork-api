@@ -17,4 +17,12 @@ class User
     @password = BCrypt::Password.create(args["password"])
   end
 
+  def json_format
+    hash = {}
+    hash["id"] = self.id
+    hash["email"] = self.email
+    hash["password"] = self.password
+    hash
+  end
+
 end
