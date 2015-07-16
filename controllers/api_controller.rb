@@ -1,9 +1,7 @@
 set :sessions => true
 
 before do
-  if session["user_id"] == nil
-    erb :"/api/login"
-  else
+  if session["user_id"]
     @user = User.find(session["user_id"])
   end
 end
