@@ -148,21 +148,18 @@ get "/api/see_users" do
 end
 
 post "/api/add_user" do
-  new_user = User.add({"email" => params["new_user"]["email"], "password" => params["new_user"]["password"]})
+  password = BCrypt::Password.create(params["new_user"]["password"])
+  new_user = User.add({"email" => params["new_user"]["email"], "password" => password})
   json new_user.json_format
 end
 
 post "/api/login" do
-  users = User.all
-  login_id = false
-  users.each do |user|
-    if user.email == params["user"]["email"] && user.password == params["user"]["password"]
-      login_id = user.id
+  user_info = User.get_user_for_login(params["user"]["email"])
+  if user_info
+    if user_info.correct_password?(params["user"]["password"])
+      session["user_id"] = user_info.id
+      json User.find(user_info.id).json_format
     end
-  end
-  if login_id != false
-    session["user_id"] = login_id
-    json User.find(login_id).json_format
   end
 end
 
